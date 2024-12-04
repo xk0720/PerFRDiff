@@ -1,15 +1,74 @@
 # PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation
+This repository contains a pytorch implementation of "PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation"
 
-Our code is coming soon!
+## Main Sections:
+[//]: # (- [Overview]&#40;#overview&#41;)
+[//]: # (- [Installation]&#40;#installation&#41;)
+[//]: # (- [Dataset]&#40;#dataset&#41;)
+[//]: # (- [Usage]&#40;#usage&#41;)
 
-## citation
+<details>
+<summary><b>Installation</b></summary>
+<p>
+
+[//]: # (### Installation)
+
+</p>
+</details>
+
+<details>
+<summary><b>Dataset</b></summary>
+<p>
+
+[//]: # (### Datasets)
+
+</p>
+</details>
+
+<details>
+<summary><b>Usage</b></summary>
+<p>
+
+### Pre-trained Models
+This project provides several pre-trained models, such as:
+* Generic Appropriate Facial Reaction Generator (GAFRG)
+* Personalized Weight Shifts Generation (PWSG) Block
+* Personalized Style Space Learning (PSSL) Block
+
+You can access and download all the available pre-trained models from the following [Google Drive link](https://drive.google.com/file/d/1Drdq3WnQjuOM9GxptC3UsTn_JSsn8_M-/view?usp=sharing). After downloading, please unzip the file and place the `checkpoints` folder into the root directory of this project.
+
+### Training
+``` python
+# Training GAFRG for multiple appropriate facial reaction generation
+python train_diffusion.py --mode train --config ./configs/diffusion_model.yaml
+
+# Training Personalized GAFRG (with Weight Editing) for multiple appropriate facial reaction generation
+python train_rewrite_weight.py --mode train --config ./configs/rewrite_weight.yaml
 ```
-@inproceedings{
-zhu2024perfrdiff,
-title={Per{FRD}iff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation},
-author={Hengde Zhu and Xiangyu Kong and Weicheng Xie and Xin Huang and Linlin Shen and Lu Liu and Hatice Gunes and Siyang Song},
-booktitle={ACM Multimedia 2024},
-year={2024},
-url={https://openreview.net/forum?id=KQVjmulG2I}
+
+### Inference
+``` python
+# Inference using GAFRG for multiple appropriate facial reaction generation
+python evaluate_diffusion.py --mode test --config ./configs/diffusion_model.yaml
+
+# Inference using Personalised GAFRG (with Weight Editing) for multiple appropriate facial reaction generation
+python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.yaml
+```
+
+</p>
+</details>
+
+## TODO
+- [ ] Installation
+- [ ] Dataset
+
+## Citation
+```
+@inproceedings{zhu2024perfrdiff,
+  title={Perfrdiff: Personalised weight editing for multiple appropriate facial reaction generation},
+  author={Zhu, Hengde and Kong, Xiangyu and Xie, Weicheng and Huang, Xin and Shen, Linlin and Liu, Lu and Gunes, Hatice and Song, Siyang},
+  booktitle={Proceedings of the 32nd ACM International Conference on Multimedia},
+  pages={9495--9504},
+  year={2024}
 }
 ```
