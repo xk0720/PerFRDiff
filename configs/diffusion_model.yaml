@@ -1,0 +1,253 @@
+person_specific:
+    type:
+        Transformer
+    args:
+        in_features: 58
+        embed_dim: 512
+        num_heads: 4
+        num_layers: 4
+        mlp_dim: 1024
+        seq_len: 750
+        proj_dim: 512
+        proj_head: mlp
+        drop_prob: 0.1
+        max_len: 1000
+        pos_encoding: absolute
+        embed_layer: linear
+    checkpoint_path:
+        ./checkpoints/person_specific/checkpoint.pth
+
+audio_encoder:
+    type:
+        AudioEmbedder
+    args:
+        skip_norm: True
+    checkpoint_path: 
+
+latent_embedder:
+    type:
+        AutoencoderRNN_VAE_v2
+    args:
+        emotion_dim: 25
+        coeff_3dmm_dim: 58
+        emb_dims: [128, 128]
+        num_layers: 2
+        hidden_dim: 512
+        z_dim: 512
+        rnn_type: 'gru'
+        dropout: 0.0
+        window_size: 50
+        seq_len: 750
+    checkpoint_path:
+        ./checkpoints/embedder_latent/checkpoint.pth
+
+latent_3dmm_embedder:
+    type:
+        AutoencoderRNN_VAE_v1
+    args:
+        _3dmm_dim: 58
+        coeff_emotion_dim: 25
+        emb_dims: [128, 128]
+        num_layers: 2
+        hidden_dim: 512
+        z_dim: 512
+        rnn_type: 'gru'
+        dropout: 0.0
+        window_size: 50
+        seq_len: 750
+    checkpoint_path:
+        ./checkpoints/embedder_3dmm/checkpoint.pth
+
+diffusion_prior:
+    type:
+        LatentMLPMatcher
+    args:
+        emb_preprocessing: normalize
+        freeze_encoder: True
+        audio_dim: 78
+        window_size: 50
+        token_len: 750
+        _3dmm_dim: 58
+        speaker_emb_dim: 512
+        latent_dim: 512
+        depth: 4
+        num_time_layers: 2
+        num_time_embeds: 1
+        num_time_emb_channels: 64
+        time_last_act: False
+        use_learned_query: True
+        s_audio_cond_drop_prob: 0.0
+        s_latentemb_cond_drop_prob: 0.0
+        s_3dmm_cond_drop_prob: 0.0
+        guidance_scale: 1.0
+        dim_head: 64
+        heads: 8
+        ff_mult: 4
+        norm_in: False
+        norm_out: True
+        attn_dropout: 0.0
+        ff_dropout: 0.0
+        final_proj: True
+        normformer: False
+        rotary_emb: True
+    scheduler:
+        noise_schedule: cosine
+        timestep_spacing: leading
+        num_train_timesteps: 1000
+        num_inference_timesteps: 50
+        predict: start_x
+        var_type: fixed_large
+        rescale_timesteps: False
+        noise_std: 1
+        k: 10
+
+diffusion_decoder:
+    type:
+        TransformerDenoiser
+    args:
+        emb_preprocessing: normalize
+        freeze_encoder: True
+        window_size: 50
+        token_len: 750
+        encode_emotion: False
+        encode_3dmm: False
+        ablation_skip_connection: True
+        nfeats: 25
+        latent_dim: 512
+        ff_size: 1024
+        num_layers: 7
+        num_heads: 4
+        dropout: 0.1
+        normalize_before: False
+        activation: gelu
+        flip_sin_to_cos: True
+        return_intermediate_dec: False
+        position_embedding: learned
+        arch: trans_dec
+        freq_shift: 0
+        time_encoded_dim: 64
+        s_audio_dim: 78
+        s_emotion_dim: 25
+        l_embed_dim: 512
+        s_embed_dim: 512
+        personal_emb_dim: 512
+        s_3dmm_dim: 58
+        concat: concat_first
+        guidance_scale: 7.5 
+        l_latent_embed_drop_prob: 1.0 
+        l_personal_embed_drop_prob: 1.0
+        s_audio_enc_drop_prob: 0.2 
+        s_latent_embed_drop_prob: 0.2 
+        s_3dmm_enc_drop_prob: 0.2 
+        s_emotion_enc_drop_prob: 1.0 
+        past_l_emotion_drop_prob: 1.0 
+        use_past_frames: False
+    scheduler:
+        noise_schedule: cosine 
+        timestep_spacing: leading 
+        num_train_timesteps: 1000
+        num_inference_timesteps: 50
+        predict: start_x
+        var_type: fixed_large
+        rescale_timesteps: False
+        noise_std: 1
+        k: 10
+
+loss:
+    type:
+        DiffusionLoss
+    args:
+        losses_type: [MSELoss, MSELoss] # MSELossWithAct | MSELoss | L1Loss
+        losses_multipliers: [1, 1]
+        losses_decoded: [False, True]
+        k: 10
+        temporal_loss_w: 0.0
+
+trainer:
+    seed: 1234
+    start_epoch: 0
+    epochs: 500
+    model: LatentMatcher
+    clip_grad: False
+    resume:
+    num_workers: 16
+    log_dir: ./log/diffusion_model
+    tb_dir: ./tb_logs/diffusion_model
+    out_dir: ./results/diffusion_model
+    checkpoint_dir: ./checkpoints/diffusion_model
+    save_period: 50
+    val_period: 50
+
+optimizer:
+    type:
+        adamW
+    args:
+        lr: 0.0001
+        weight_decay: 1e-4
+        beta: [0.9, 0.999]
+    scheduler: cosine_annealing
+
+dataset:
+    batch_size: 4
+    shuffle: True
+    num_workers: 16
+    dataset_path: ../phd_data_all/react_clean
+    split: train
+    num_person: 16
+    num_sample: 4
+    img_size: 256
+    crop_size: 224
+    clip_length: 750
+    fps: 25
+    load_audio: True
+    load_video_s: False
+    load_video_l: False
+    load_emotion_l: True
+    load_emotion_s: True
+    load_3dmm_l: True
+    load_3dmm_s: True
+    load_ref: True
+    k_appro: 10
+
+validation_dataset:
+    batch_size: 8
+    shuffle: False
+    num_workers: 16
+    dataset_path: ../phd_data_all/react_clean
+    split: val
+    num_person: 16
+    num_sample: 4
+    img_size: 256
+    crop_size: 224
+    clip_length: 750
+    fps: 25
+    load_audio: True
+    load_video_s: False
+    load_video_l: False
+    load_emotion_l: True
+    load_emotion_s: True
+    load_3dmm_l: True
+    load_3dmm_s: True
+    load_ref: True
+    k_appro: 10
+
+test_dataset:
+    batch_size: 1
+    shuffle: False
+    num_workers: 16
+    dataset_path: ../phd_data_all/react_clean
+    split: test
+    img_size: 256
+    crop_size: 224
+    clip_length: 750
+    fps: 25
+    load_audio: True
+    load_video_s: False
+    load_video_l: False
+    load_emotion_l: True
+    load_emotion_s: True
+    load_3dmm_l: True
+    load_3dmm_s: True
+    load_ref: False
+    k_appro: 10
+    threads: 32
