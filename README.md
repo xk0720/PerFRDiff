@@ -91,7 +91,57 @@ pip install -r requirements.txt
 <summary><b>📊 Dataset</b></summary>
 <p>
 
-[//]: # (### Dataset)
+Our work is built upon the REACT 2024 Multimodal Challenge Dataset, which leverages two well-established dyadic interaction datasets: [NOXI](https://dl.acm.org/doi/10.1145/3136755.3136780) and [RECOLA](https://ieeexplore.ieee.org/document/6553805). The dataset can be accessed through the official [REACT 2024 Challenge Homepage](https://sites.google.com/cam.ac.uk/react2024).
+
+After downloading the dataset, please rename your downloaded folder to `data` and place it in the root directory of this project.
+
+### Data Structure
+Example directory structure:
+```
+data
+├── test
+├── val
+├── train
+   ├── Video_files
+       ├── NoXI
+           ├── 010_2016-03-25_Paris
+               ├── Expert_video
+               ├── Novice_video
+                   ├── 1.mp4
+                   ├── ....
+           ├── ....
+       ├── RECOLA
+   ├── Audio_files
+       ├── NoXI
+       ├── RECOLA
+           ├── group-1
+               ├── P25 
+               ├── P26
+                   ├── 1.wav
+                   ├── ....
+           ├── group-2
+           ├── group-3
+   ├── Emotion
+       ├── NoXI
+       ├── RECOLA
+           ├── group-1
+               ├── P25
+               ├── P26
+                   ├── 1.csv
+                   ├── ....
+           ├── group-2
+           ├── group-3
+   ├── 3D_FV_files
+       ├── NoXI
+       ├── RECOLA
+           ├── group-1
+               ├── P25 
+               ├── P26
+                   ├── 1.npy
+                   ├── ....
+           ├── group-2
+           ├── group-3
+```
 
 </p>
 </details>
