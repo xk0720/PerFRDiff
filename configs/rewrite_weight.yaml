@@ -214,7 +214,7 @@ dataset:
     batch_size: 1
     shuffle: True
     num_workers: 16
-    dataset_path: ../phd_data_all/react_clean
+    dataset_path: ./react_clean
     split: train
     num_person: 16
     num_sample: 4
@@ -236,7 +236,7 @@ validation_dataset:
     batch_size: 1
     shuffle: False
     num_workers: 16
-    dataset_path: ../phd_data_all/react_clean
+    dataset_path: ./react_clean
     split: val
     num_person: 16
     num_sample: 4
@@ -258,7 +258,7 @@ test_dataset:
     batch_size: 1
     shuffle: False
     num_workers: 16
-    dataset_path: ../phd_data_all/react_clean
+    dataset_path: ./react_clean
     split: test
     img_size: 256
     crop_size: 224
