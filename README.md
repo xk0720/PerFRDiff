@@ -1,5 +1,5 @@
 # PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation
-This repository contains a pytorch implementation of "PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation"
+This repository contains a pytorch implementation of "PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation".
 
 ## 📖 Main Sections:
 [//]: # (- [Overview]&#40;#overview&#41;)
@@ -66,7 +66,7 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
 [//]: # (![Comparison]&#40;docs/figures/comparison.png&#41;)
 
 <details>
-<summary>Qualitative comparison between our method and existing baselines</summary>
+<summary>Qualitative comparison between our method and existing baselines (Click to expand) </summary>
 <p>
 
 ![Comparison](docs/figures/comparison.png)
