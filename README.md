@@ -61,9 +61,18 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
 ## 👀 Visualization of Facial Reactions
 
 ### Qualitative Results
-Qualitative comparison between our method and existing baselines.
+
+[//]: # (Qualitative comparison between our method and existing baselines.)
+[//]: # (![Comparison]&#40;docs/figures/comparison.png&#41;)
+
+<details>
+<summary>Qualitative comparison between our method and existing baselines</summary>
+<p>
 
 ![Comparison](docs/figures/comparison.png)
+
+</p>
+</details>
 
 ### Dynamic Visualization
 
