@@ -1,17 +1,88 @@
 # PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation
 This repository contains a pytorch implementation of "PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation".
 
-## 📖 Main Sections:
+## 👨‍🏫 Main Sections:
 [//]: # (- [Overview]&#40;#overview&#41;)
 [//]: # (- [Installation]&#40;#installation&#41;)
 [//]: # (- [Dataset]&#40;#dataset&#41;)
 [//]: # (- [Usage]&#40;#usage&#41;)
 
 <details>
-<summary><b>Installation</b></summary>
+<summary><b>🛠️ Dependency Installation</b></summary>
 <p>
 
-[//]: # (### Installation)
+[//]: # (## 🛠️ Dependency Installation)
+
+We provide detailed instructions for setting up the environment using conda. First, create and activate a new environment:
+``` shell
+conda create -n react python=3.10
+conda activate react
+```
+
+### 1. Install PyTorch
+First, check your CUDA version:
+``` shell
+nvidia-smi
+```
+Visit [Pytorch official website](https://pytorch.org/) to get the appropriate installation command. For example:
+``` shell
+conda install pytorch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+```
+
+### 2. Install PyTorch3D Dependencies
+Install the following dependencies:
+``` shell
+conda install -c fvcore -c iopath -c conda-forge fvcore iopath
+```
+For CUDA versions older than 11.7, you will need to install the CUB library. There are two installation options:
+
+Option A: Using conda (Recommended)
+``` shell
+conda install -c bottler nvidiacub
+```
+Option B: Manual installation
+1. Download the CUB library from NVIDIA CUB Releases.
+2. Unpack it to a folder of your choice. For example, on Linux/Mac:
+``` shell
+cd ~
+mkdir CUB
+curl -LO https://github.com/NVIDIA/cub/archive/2.1.0.tar.gz
+tar xzf 2.1.0.tar.gz
+```
+[//]: # (Define the environment variable CUB_HOME in `~/.bashrc` before building and point it to the directory that contains `CMakeLists.txt` for CUB.)
+3. Define the environment variable CUB_HOME in `~/.bashrc`. This variable should point to the directory that contains `CMakeLists.txt` for CUB. Add this line to your `~/.bashrc`:
+``` shell
+export CUB_HOME=~/CUB/cub-2.1.0
+```
+
+[//]: # (Install jupyter-notebook and make the environment `react` available to jupyter-notebook by running)
+To enable Jupyter notebook support, install Jupyter and register the environment:
+``` shell
+conda install jupyter
+python -m ipykernel install --user --name=react
+```
+
+### 3. Install PyTorch3D
+First, verify your CUDA version in Python:
+``` shell
+import torch
+torch.version.cuda
+```
+[//]: # (Download `pytorch3d` file based on the version of python, cuda and pytorch from https://anaconda.org/pytorch3d/pytorch3d/files. For example, to install for Python 3.8, PyTorch 1.12.1 and CUDA 11.6, select the below file to download)
+Download the appropriate `PyTorch3D` package from [Anaconda](https://anaconda.org/pytorch3d/pytorch3d/files) based on your Python, CUDA, and PyTorch versions. For example, for Python 3.10, CUDA 11.6, and PyTorch 1.12.0:
+
+[//]: # (Finally install `pytorch3d` via the downloaded `.tar.bz2` file via conda)
+``` shell
+# linux-64_pytorch3d-0.7.5-py310_cu116_pyt1120.tar.bz2
+conda install linux-64_pytorch3d-0.7.5-py310_cu116_pyt1120.tar.bz2
+```
+
+### 4. Install Additional Dependencies
+[//]: # (pip install omegaconf scikit-video pandas soundfile av decord tensorboard numpy tslearn scikit-image matplotlib imageio plotly opencv-python librosa einops)
+Install all remaining dependencies specified in requirements.txt:
+``` shell
+pip install -r requirements.txt
+```
 
 </p>
 </details>
@@ -26,7 +97,7 @@ This repository contains a pytorch implementation of "PerFRDiff: Personalised We
 </details>
 
 <details>
-<summary><b>Usage</b></summary>
+<summary><b>📖 Usage</b></summary>
 <p>
 
 ### Pre-trained Models
