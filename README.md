@@ -1,6 +1,7 @@
 # PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation
 This repository contains a pytorch implementation of "PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation".
 
+
 ## 👨‍🏫 Main Sections:
 [//]: # (- [Overview]&#40;#overview&#41;)
 [//]: # (- [Installation]&#40;#installation&#41;)
@@ -10,8 +11,6 @@ This repository contains a pytorch implementation of "PerFRDiff: Personalised We
 <details>
 <summary><b>🛠️ Dependency Installation</b></summary>
 <p>
-
-[//]: # (## 🛠️ Dependency Installation)
 
 We provide detailed instructions for setting up the environment using conda. First, create and activate a new environment:
 ``` shell
@@ -125,8 +124,8 @@ data
        ├── NoXI
        ├── RECOLA
            ├── group-1
-               ├── P25
-               ├── P26
+               ├── P1
+               ├── P2
                    ├── 1.csv
                    ├── ....
            ├── group-2
@@ -142,7 +141,6 @@ data
            ├── group-2
            ├── group-3
 ```
-
 </p>
 </details>
 
@@ -157,6 +155,16 @@ This project provides several pre-trained models, such as:
 * Personalized Style Space Learning (PSSL) Block
 
 You can access and download all the available pre-trained models from the following [Google Drive link](https://drive.google.com/file/d/1Drdq3WnQjuOM9GxptC3UsTn_JSsn8_M-/view?usp=sharing). After downloading, please unzip the file and place the `checkpoints` folder into the root directory of this project.
+
+### External Dependencies
+Our framework leverages two key external tools:
+- [FaceVerse](https://github.com/LizhenWangT/FaceVerse) for extraction of 3DMM coefficients
+- [PIRender](https://github.com/RenYurui/PIRender) (3D-to-2D tool) for facial reaction frame rendering
+
+For convenience, we have compiled all necessary model files into a single package, available at [Google Drive link](https://drive.google.com/file/d/14Z1vFbu4Amren8TjS_PEIZZVIqWdikm5/view?usp=sharing). After downloading, please extract the `external` folder and place it in the root directory of this project. This package includes:
+
+- FaceVerse model (Version 2) and auxiliary files (mean_face, std_face, and reference_full)
+- Well-trained PIRender model
 
 ### Training
 ``` python
@@ -179,6 +187,7 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
 </p>
 </details>
 
+
 ## 📽 Visualization of Facial Reactions
 
 ### Qualitative Results
@@ -199,10 +208,12 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
 
 https://github.com/user-attachments/assets/5799f032-3fbf-4f41-bd29-6293c6f4e151
 
+
 ## 🤝 Acknowledgement
 We extend our sincere gratitude to the following open-source projects:
 - [FaceVerse](https://github.com/LizhenWangT/FaceVerse)
 - [PIRender](https://github.com/RenYurui/PIRender)
+
 
 ## 🖊️ Citation
 ```
