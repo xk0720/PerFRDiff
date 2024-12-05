@@ -1,7 +1,7 @@
 # PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation
 This repository contains a pytorch implementation of "PerFRDiff: Personalised Weight Editing for Multiple Appropriate Facial Reaction Generation"
 
-## Main Sections:
+## 📖 Main Sections:
 [//]: # (- [Overview]&#40;#overview&#41;)
 [//]: # (- [Installation]&#40;#installation&#41;)
 [//]: # (- [Dataset]&#40;#dataset&#41;)
@@ -20,7 +20,7 @@ This repository contains a pytorch implementation of "PerFRDiff: Personalised We
 <summary><b>Dataset</b></summary>
 <p>
 
-[//]: # (### Datasets)
+[//]: # (### Dataset)
 
 </p>
 </details>
@@ -58,11 +58,22 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
 </p>
 </details>
 
+## 👀 Visualization of Facial Reactions
+
+### Qualitative Results
+Qualitative comparison between our method and existing baselines.
+
+![Comparison](docs/figures/comparison.png)
+
+### Dynamic Visualization
+
+https://github.com/user-attachments/assets/5799f032-3fbf-4f41-bd29-6293c6f4e151
+
 ## TODO
 - [ ] Installation
 - [ ] Dataset
 
-## Citation
+## 🖊️ Citation
 ```
 @inproceedings{zhu2024perfrdiff,
   title={Perfrdiff: Personalised weight editing for multiple appropriate facial reaction generation},
@@ -72,3 +83,8 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
   year={2024}
 }
 ```
+
+## 🤝 Acknowledgement
+We extend our sincere gratitude to the following open-source projects:
+- [FaceVerse](https://github.com/LizhenWangT/FaceVerse)
+- [PIRender](https://github.com/RenYurui/PIRender)
