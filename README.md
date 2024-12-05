@@ -88,7 +88,7 @@ pip install -r requirements.txt
 </details>
 
 <details>
-<summary><b>Dataset</b></summary>
+<summary><b>📊 Dataset</b></summary>
 <p>
 
 [//]: # (### Dataset)
@@ -129,7 +129,7 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
 </p>
 </details>
 
-## 👀 Visualization of Facial Reactions
+## 📽 Visualization of Facial Reactions
 
 ### Qualitative Results
 
@@ -149,9 +149,10 @@ python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.
 
 https://github.com/user-attachments/assets/5799f032-3fbf-4f41-bd29-6293c6f4e151
 
-## TODO
-- [ ] Installation
-- [ ] Dataset
+## 🤝 Acknowledgement
+We extend our sincere gratitude to the following open-source projects:
+- [FaceVerse](https://github.com/LizhenWangT/FaceVerse)
+- [PIRender](https://github.com/RenYurui/PIRender)
 
 ## 🖊️ Citation
 ```
@@ -163,8 +164,3 @@ https://github.com/user-attachments/assets/5799f032-3fbf-4f41-bd29-6293c6f4e151
   year={2024}
 }
 ```
-
-## 🤝 Acknowledgement
-We extend our sincere gratitude to the following open-source projects:
-- [FaceVerse](https://github.com/LizhenWangT/FaceVerse)
-- [PIRender](https://github.com/RenYurui/PIRender)
