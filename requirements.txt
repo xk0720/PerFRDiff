@@ -16,3 +16,4 @@ librosa
 einops
 transformers
 openpyxl
+timm
