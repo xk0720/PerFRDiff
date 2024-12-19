@@ -167,7 +167,7 @@ For convenience, we have compiled all necessary model files into a single packag
 - Well-trained PIRender model
 
 ### Training
-``` python
+``` bash
 # Training GAFRG for multiple appropriate facial reaction generation
 python train_diffusion.py --mode train --writer True --config diffusion_model.yaml
 
@@ -176,7 +176,7 @@ python train_rewrite_weight.py --mode train --writer True --config rewrite_weigh
 ```
 
 ### Inference
-``` python
+``` bash
 # Inference using GAFRG for multiple appropriate facial reaction generation
 python evaluate_diffusion.py --mode test --config diffusion_model.yaml
 
