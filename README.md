@@ -169,19 +169,19 @@ For convenience, we have compiled all necessary model files into a single packag
 ### Training
 ``` python
 # Training GAFRG for multiple appropriate facial reaction generation
-python train_diffusion.py --mode train --config ./configs/diffusion_model.yaml
+python train_diffusion.py --mode train --writer True --config diffusion_model.yaml
 
 # Training Personalized GAFRG (with Weight Editing) for multiple appropriate facial reaction generation
-python train_rewrite_weight.py --mode train --config ./configs/rewrite_weight.yaml
+python train_rewrite_weight.py --mode train --writer True --config rewrite_weight.yaml
 ```
 
 ### Inference
 ``` python
 # Inference using GAFRG for multiple appropriate facial reaction generation
-python evaluate_diffusion.py --mode test --config ./configs/diffusion_model.yaml
+python evaluate_diffusion.py --mode test --config diffusion_model.yaml
 
 # Inference using Personalised GAFRG (with Weight Editing) for multiple appropriate facial reaction generation
-python evaluate_rewrite_weight.py --mode test --config ./configs/rewrite_weight.yaml
+python evaluate_rewrite_weight.py --mode test --config rewrite_weight.yaml
 ```
 
 </p>
